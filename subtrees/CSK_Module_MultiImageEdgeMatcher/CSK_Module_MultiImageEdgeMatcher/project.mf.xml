@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest>
+    <application name="CSK_Module_MultiImageEdgeMatcher">
+        <crown name="CSK_Module_MultiImageEdgeMatcher">
+            <desc>This is an automatically generated CROWN (description not necessary).</desc>
+        </crown>
+        <crown name="CSK_MultiImageEdgeMatcher">
+            <trait>released</trait>
+            <desc>Module to provide EdgeMatcher functionality. Multiple instances can be created and will run in multiple threads on the device. +
+This module provides a UI for all relevant features. +
+{empty} +
+Typically to configure this module to work with other modules you should do this: +
+{empty} +
+1) If multiple instances are needed, these can be added via 'addInstance' (not needed if you only use 1 single instance). +
+2) Select the instance you want to configur via setInstance(). +
+3) Set the event providing the images to be processed e.g. via setRegisterEvent('CSK_ImagePlayer.OnNewImage'). +
+4) Optionally edit EdgeMatcher parameters via 'setEdgeThreshold', 'setMaximumMatches', 'setDownsampleFactor', ... (check other 'set....' function as well..). +
+INFO: Regarding further details of the EdgeMatcher parameters please read the AppSpace API documentation. +
+5) Press the "Teach Mode" button within the UI. It will provide a ROI (Region of interest) editor to select an object and show its tought edges. Press the button again to confirm the tought structure. +
+6) Define the minimum valid score via 'setMinScore'. +
+7) The module will align the image in relation to the first found object. Other modules can register on the 'CSK_MultiImageEdgeMatcher.OnNewAlignedImage[NUM]' event to receive the aligned image for further processing, on the 'CSK_MultiImageEdgeMatcher.OnNewTransformation[NUM]' event to receive the transformation itself or on 'CSK_MultiImageEdgeMatcher.OnNewStatusFoundMatchesNUM' /  'CSK_MultiImageEdgeMatcher.OnNewStatusMatchScoreResultNUM' to  receive the processing result values. +
+{empty} +</desc>
+            <enum name="BackgroundClutterLevel" trait="released">
+                <desc>Background clutter level.</desc>
+                <item desc="Set if image contains a lot of other edges, structures, noise, clutter in areas not belonging to the object of interest (like barcodes and text which generate a lot of edge responses)." name="HIGH">HIGH</item>
+                <item desc="Set for clean scenes to gain speed." name="MEDIUM">MEDIUM</item>
+                <item desc="Set for clean scenes to gain speed." name="LOW">LOW</item>
+            </enum>
+            <serves>
+                <event name="OnNewStatusLoadParameterOnReboot">
+                    <desc>Notify status if parameters should be loaded on app/device boot up.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnPersistentDataModuleAvailable">
+                    <desc>Notify status if features of CSK_PersistentData module are available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewInstanceList">
+                    <desc>Event to provide list of created instances.</desc>
+                    <param desc="List of created instances." multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewProcessingParameter">
+                    <desc>Event to share processing parameters to the instances.</desc>
+                    <param desc="Numeric identifier of the instance to receive the parameter." multiplicity="1" name="objectNo" type="int"/>
+                    <param desc="Name of the parameter." multiplicity="1" name="parameter" type="string"/>
+                    <param desc="Value of the parameter." multiplicity="?" name="value" type="auto"/>
+                    <param desc="Numeric identifier, if parameter is for specific internal used object." multiplicity="?" name="internalObjectNo" type="int"/>
+                </event>
+                <event name="OnNewSelectedInstance">
+                    <desc>Notify if new instance is selected.</desc>
+                    <param desc="Selected instance." multiplicity="1" name="selectedObject" type="int"/>
+                </event>
+                <event name="OnDataLoadedOnReboot">
+                    <desc>Event to call after module tried to load parameters and is ready.</desc>
+                </event>
+                <event name="OnNewParameterName">
+                    <desc>Notify name of persistent data parameter.</desc>
+                    <param desc="Parameter name" multiplicity="1" name="name" type="string"/>
+                </event>
+                <event name="OnUserLevelOperatorActive">
+                    <desc>Status of Operator userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelMaintenanceActive">
+                    <desc>Status of Maintenance userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelServiceActive">
+                    <desc>Status of Service userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelAdminActive">
+                    <desc>Status of Admin userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewValueUpdateNUM">
+                    <desc>Example of dynamically created event to sync paramters between instance threads and Controller part of module. +
+NUM will be replaced by the numeric identifier of instance (e.g. "OnNewValueUpdate1"). +</desc>
+                    <param desc="Instance the new value is coming from." multiplicity="1" name="instance" type="int"/>
+                    <param desc="Name of the paramter to update/sync." multiplicity="1" name="parameter" type="string"/>
+                    <param desc="Value to update." multiplicity="1" name="value" type="auto"/>
+                    <param desc="Optional: If internal parameter should be used for internal objects." multiplicity="?" name="selectedObject" type="int"/>
+                </event>
+                <event name="OnNewValueToForwardNUM">
+                    <desc>Example of dynamically created event to forward data from instance thread to Controller part of module, e.g. to forward values to UI. +
+NUM will be replaced by the numeric identifier of instance (e.g. "OnNewValueToForward1"). +</desc>
+                    <param desc="Eventname to use to forward value." multiplicity="1" name="eventname" type="string"/>
+                    <param desc="Value to forward." multiplicity="1" name="value" type="auto"/>
+                </event>
+                <event name="OnNewViewerID">
+                    <desc>Notify viewerID for viewer in UI for currently selected instance.</desc>
+                    <param desc="ViewerID" multiplicity="1" name="id" type="string"/>
+                </event>
+                <event name="OnNewStatusRegisteredEvent">
+                    <desc>Notify event instance is registered to receive new image to process.</desc>
+                    <param desc="Name of event." multiplicity="1" name="eventname" type="string"/>
+                </event>
+                <event name="OnROIEditorActive">
+                    <desc>Notify if ROI editor is currently active in UI.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusShowImage">
+                    <desc>Notify if image should be showed in UI.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusEdgeThreshold">
+                    <desc>Notify currently used edge threshold.</desc>
+                    <param desc="Edge threshold." multiplicity="1" name="threshold" type="int"/>
+                </event>
+                <event name="OnNewStatusMinimalScore">
+                    <desc>Notify currently minimal valid match score.</desc>
+                    <param desc="Minimal valid match score." multiplicity="1" name="score" type="float"/>
+                </event>
+                <event name="OnNewStatusDownsampleFactor">
+                    <desc>Notify currently used downsample factor of edge matcher.</desc>
+                    <param desc="Downsample factor" multiplicity="1" name="factor" type="int"/>
+                </event>
+                <event name="OnNewStatusMaxMatches">
+                    <desc>Notify maximum amount of matches to find.</desc>
+                    <param desc="Maximum amount of matches." multiplicity="1" name="max" type="int"/>
+                </event>
+                <event name="OnNewAlignedImageNUM">
+                    <desc>Example of dynamically created event to provide aligned image to be used for post processing. +
+NUM will be replaced by the numeric identifier of instance (e.g. "OnNewAlignedImage1"). +
+INFO: Other modules can check via "Script.isServedAsEvent" if event of sepecific instance exists.</desc>
+                    <param alias="Image" desc="Aligned image" multiplicity="1" name="image" type="object"/>
+                </event>
+                <event name="OnNewStatusMatchScoreResultNUM">
+                    <desc>Notify score of match.
+Example of dynamically created event to provide score of match. +
+NUM will be replaced by the numeric identifier of instance (e.g. "OnNewStatusMatchScoreResult1"). +
+INFO: Other modules can check via "Script.isServedAsEvent" if event of sepecific instance exists.</desc>
+                    <param desc="Scores of matches." multiplicity="*" name="score" type="float"/>
+                </event>
+                <event name="OnNewStatusMatchScoreResult">
+                    <desc>Notify score of found match of currently selected EdgeMatcher instance.</desc>
+                    <param desc="Score of match." multiplicity="1" name="score" type="string"/>
+                </event>
+                <event name="OnNewStatusFoundMatches">
+                    <desc>Notify amount of found matches of currently selected EdgeMatcher instance.</desc>
+                    <param desc="Amount of found matches." multiplicity="1" name="amount" type="string"/>
+                </event>
+                <event name="OnNewStatusFoundMatchesNUM">
+                    <desc>Example of dynamically created event to provide result of found matches. +
+NUM will be replaced by the numeric identifier of instance (e.g. "OnNewStatusFoundMatches1"). +
+INFO: Other modules can check via "Script.isServedAsEvent" if event of sepecific instance exists.</desc>
+                    <param desc="Amount of found matches." multiplicity="1" name="amount" type="int"/>
+                </event>
+                <event name="OnNewStatusFlowConfigPriority">
+                    <desc>Notify if FlowConfig should have priority for FlowConfig relevant configurations.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewTransformationNUM">
+                    <desc>Example of dynamically created event to provide transformation data to be used for post processing. +
+NUM will be replaced by the numeric identifier of instance (e.g. "OnNewTransformation1"). +
+INFO: Other modules can check via "Script.isServedAsEvent" if event of sepecific instance exists.</desc>
+                    <param alias="Transform" desc="Transformation" multiplicity="[?*]" name="transform" type="object"/>
+                </event>
+                <event name="OnNewStatusResultTranslateX">
+                    <desc>Notify pixel to transform result in x direction.</desc>
+                    <param desc="Pixel in x direction." multiplicity="1" name="value" type="int"/>
+                </event>
+                <event name="OnNewStatusResultTranslateY">
+                    <desc>Notify pixel to transform result in y direction.</desc>
+                    <param desc="Pixel in y direction." multiplicity="1" name="value" type="int"/>
+                </event>
+                <event name="OnNewStatusFoundValidMatches">
+                    <desc>Notify amount of found matches with valid score of currently selected EdgeMatcher instance.</desc>
+                    <param desc="Amount of found matches." multiplicity="1" name="amount" type="string"/>
+                </event>
+                <event name="OnNewStatusFoundValidMatchesNUM">
+                    <desc>Example of dynamically created event to provide result of found matches with valid score. +
+NUM will be replaced by the number of instance (e.g. "OnNewStatusFoundValidMatches1"). +
+INFO: Other modules can check via "Script.isServedAsEvent" if event of sepecific instance exists.</desc>
+                    <param desc="Amount of found matches with valid score." multiplicity="1" name="amount" type="int"/>
+                </event>
+                <event name="OnNewStatusTought">
+                    <desc>Notify if matcher was teached already.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusBackgroundClutter">
+                    <desc>Notify background clutter level.</desc>
+                    <param desc="Background clutter level." multiplicity="1" name="level" type="string"/>
+                </event>
+                <event name="OnNewStatusMinimumSeparation">
+                    <desc>Notify minimum separation between the center of object matches.</desc>
+                    <param desc="The minimum separation between the centers of two objects in image world units." multiplicity="1" name="minSeparation" type="float"/>
+                </event>
+                <event name="OnNewStatusPerformFineSearch">
+                    <desc>Notify if the fine search should be perfromed.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusRotationRange">
+                    <desc>Notify angle in degree, the maximum deviation from the original object orientation to search for.</desc>
+                    <param desc="Angle in degree." multiplicity="1" name="angle" type="float"/>
+                </event>
+                <event name="OnNewStatusPriorRotation">
+                    <desc>Notify prior orientation for rotation range.</desc>
+                    <param desc="Prior orientation in degree." multiplicity="1" name="priorRotation" type="float"/>
+                </event>
+                <event name="OnNewStatusMinScale">
+                    <desc>Notify smallest scale factor to search for.</desc>
+                    <param desc="Lower limit is 0.8. Default value is 1.0" multiplicity="1" name="minScale" type="float"/>
+                </event>
+                <event name="OnNewStatusMaxScale">
+                    <desc>Notify largest scale factor to search for.</desc>
+                    <param desc="Upper limit is 1.2. Default value is 1.0." multiplicity="1" name="maxScale" type="float"/>
+                </event>
+                <event name="OnNewStatusPriorScale">
+                    <desc>Notfiy prior scale factor for scale ranger.</desc>
+                    <param desc="Min: 0.1. Max: 10" multiplicity="1" name="priorScale" type="float"/>
+                </event>
+                <event name="OnNewStatusTileCount">
+                    <desc>Notify how many tile images the match image should be splitted into.</desc>
+                    <param desc="Number of tile images to split into." multiplicity="1" name="tileCount" type="int"/>
+                </event>
+                <event name="OnNewStatusTimeout">
+                    <desc>Notify time in seconds after which the match algorithm should abort.</desc>
+                    <param desc="Time in seconds after which the algorithm should abort." multiplicity="1" name="timeoutSeconds" type="float"/>
+                </event>
+                <event name="OnNewStatusCSKStyle">
+                    <desc>Notify UI style to use for CSK modules.</desc>
+                    <param desc="UI style" multiplicity="1" name="theme" type="string"/>
+                </event>
+                <event name="OnNewStatusModuleVersion">
+                    <desc>Notify version of module.</desc>
+                    <param desc="Version" multiplicity="1" name="version" type="string"/>
+                </event>
+                <event name="OnNewStatusModuleIsActive">
+                    <desc>Notify if module can be used on device.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <function name="setParameterName">
+                    <desc>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</desc>
+                    <param desc="Name of the parameter" multiplicity="1" name="name" type="string"/>
+                </function>
+                <function name="sendParameters">
+                    <desc>Send parameters to CSK_PersistentData module if possible to save them.</desc>
+                    <param desc="[Optional] Set to TRUE if the data should NOT be saved immediately after sending." multiplicity="?" name="noDataSave" type="bool"/>
+                </function>
+                <function name="setLoadOnReboot">
+                    <desc>Configure if this module should load its saved parameters at app/ device boot up.</desc>
+                    <param desc="Set status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="pageCalled">
+                    <desc>Function to register "OnResume" of the module UI (only as helper function).</desc>
+                    <return desc="Empty string (only needed to simplify binding)." multiplicity="1" name="empty" type="string"/>
+                </function>
+                <function name="setSelectedInstance">
+                    <desc>Select one of the multiple instances.</desc>
+                    <param desc="Instance to select." multiplicity="1" name="instance" type="int"/>
+                </function>
+                <function name="getInstancesAmount">
+                    <desc>Get the amount of created instances of this module.</desc>
+                    <return desc="Amount of created instances." multiplicity="1" name="amount" type="int"/>
+                </function>
+                <function name="setRegisterEvent">
+                    <desc>Configure event that this module should listen to. If this event is notified, it will be linked to the internal processing function. +
+(Will be set to currently active instance, see 'setSelectedObject')</desc>
+                    <param desc="Event name to listen to." multiplicity="1" name="event" type="string"/>
+                </function>
+                <function name="processInstanceNUM">
+                    <desc>Example of dynamically served function to process internally coded function. +
+NUM will be replaced by the numeric identifier of instance (e.g. "processInstance1"). +
+INFO: Other modules can check via "Script.isServedAsFunction" if function of sepecific instance exists. +
+Needs then to be called via "Script.callFunction".</desc>
+                    <param alias="Image" desc="Image" multiplicity="1" name="image" type="object"/>
+                    <return desc="Processing result (optional)." multiplicity="?" name="result" type="bool"/>
+                </function>
+                <function name="addInstance">
+                    <desc>Function to add an additional instance.</desc>
+                </function>
+                <function name="resetInstances">
+                    <desc>Function to reset instances to one single instance. +
+IMPORTANT: As instances start their own threads, the module needs to be restarted if new instances are needed... (see AppEngine docu for "Script.startScript").</desc>
+                </function>
+                <function name="setTeachMode">
+                    <desc>Set status of teach mode for edge matcher. +
+If TRUE, the viewer in the UI will install an editor for the ROI. + 
+If FALSE it will update the masks accordingly.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setEdgeThreshold">
+                    <desc>Function to set edge threshold.</desc>
+                    <param desc="Edge threshold" multiplicity="1" name="threshold" type="int"/>
+                </function>
+                <function name="setMinimumValidScore">
+                    <desc>Function to set minimal valid match score.</desc>
+                    <param desc="Minimal valid match score." multiplicity="1" name="minScore" type="float"/>
+                </function>
+                <function name="setDownsampleFactor">
+                    <desc>Function to set downsample factor of edge matcher. +
+Setting this parameter will invalidate any previous teach call!</desc>
+                    <param desc="Downsample factor." multiplicity="1" name="factor" type="int"/>
+                </function>
+                <function name="setMaximumMatches">
+                    <desc>Function to set maximum amount of matches to find.</desc>
+                    <param desc="Maximum amount of matches." multiplicity="1" name="max" type="int"/>
+                </function>
+                <function name="setShowImage">
+                    <desc>Function to select if image should be shown on UI.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setResultTransX">
+                    <desc>Function to set image translation in x direction added to found object position.</desc>
+                    <param desc="Pixel in x direction." multiplicity="1" name="value" type="int"/>
+                </function>
+                <function name="setResultTransY">
+                    <desc>Function to set image translation in y direction added to found object position.</desc>
+                    <param desc="Pixel in y direction." multiplicity="1" name="value" type="int"/>
+                </function>
+                <function name="unteach">
+                    <desc>Function to unteach matcher.</desc>
+                </function>
+                <function name="setBackgroundClutter">
+                    <desc>Function to set background clutter level.</desc>
+                    <param desc="Expected background clutter level." multiplicity="1" name="level" ref="CSK_MultiImageEdgeMatcher.BackgroundClutterLevel" type="enum"/>
+                </function>
+                <function name="setMinSeparation">
+                    <desc>Function to set the minimum separation between the centers of object matches.</desc>
+                    <param desc="The minimum separation between the centers of two objects in image world units. The default value is 50." multiplicity="1" name="minSeparation" type="float"/>
+                </function>
+                <function name="setFineSearch">
+                    <desc>Function to set status if fine search should be performed.</desc>
+                    <param desc="Default is true." multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setRotationRange">
+                    <desc>Function to set rotation interval to search in relative to the teach orientation.</desc>
+                    <param desc="Angle in degree unit, the maximum deviation from the original object orientation to search for. The default value is 180 degrees, i.e., full rotation." multiplicity="1" name="range" type="float"/>
+                </function>
+                <function name="setPriorRotation">
+                    <desc>Function to set prior orientation for rotation interval (see TODO).</desc>
+                    <param desc="Prior orientation in degrees. The orientation search range is centered around this orientation. Default is zero (i.e. same orientation as teach object)." multiplicity="1" name="orientation" type="float"/>
+                </function>
+                <function name="setMinScale">
+                    <desc>Function to set minimum of scale interval to search relative to the teach size.</desc>
+                    <param desc="The smallest scale factor to search for. Lower limit is 0.8. Default value is 1.0." multiplicity="1" name="value" type="float"/>
+                </function>
+                <function name="setMaxScale">
+                    <desc>Function to set maximum of scale interval to search relative to the teach size.</desc>
+                    <param desc="The largest scale factor to search for. Upper limit is 1.2. Default value is 1.0." multiplicity="1" name="value" type="float"/>
+                </function>
+                <function name="setPriorScale">
+                    <desc>Function to set prior scale factor of scale interval to search relative to the teach size.</desc>
+                    <param desc="Set to the expected scale of the object to find, relative to the size of the teach object. E.g. 1.25 if the object to find is 25% larger than the teach object. Min: 0.1. Max: 10" multiplicity="1" name="value" type="float"/>
+                </function>
+                <function name="setTileCount">
+                    <desc>Function to set into how many tile images the match image should be splitted into.</desc>
+                    <param desc="Number of tile images to split into. 0 gives automatic selection. 1 disables tiling. Default: 0." multiplicity="1" name="value" type="int"/>
+                </function>
+                <function name="setTimeout">
+                    <desc>Function to set the time the match call should abort if time exceeds.</desc>
+                    <param desc="Time in seconds after which the algorithm should abort. The default value is 5 seconds." multiplicity="1" name="value" type="float"/>
+                </function>
+                <function name="clearFlowConfigRelevantConfiguration">
+                    <desc>Function to clear FlowConfig relevant configurations.</desc>
+                </function>
+                <function name="setFlowConfigPriority">
+                    <desc>Function to configure if FlowConfig should have priority for FlowConfig relevant configuration.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="getStatusModuleActive">
+                    <desc>Function to get status if module is active.</desc>
+                    <return desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="loadParameters">
+                    <desc>Load parameters for this module from the CSK_PersistentData module if possible and use them.</desc>
+                    <return desc="Success to load parameters." multiplicity="1" name="success" type="bool"/>
+                </function>
+                <function name="getParameters">
+                    <trait>released</trait>
+                    <desc>Function to get all parameters of the client in JSON format.</desc>
+                    <param desc="Number of instance to get parameters from." multiplicity="1" name="instanceNo" type="int"/>
+                    <return desc="JSON string with all parameters." multiplicity="1" name="jsonParameters" type="string"/>
+                </function>
+                <function name="resetModule">
+                    <desc>Function to reset main configuration of module.</desc>
+                </function>
+            </serves>
+        </crown>
+        <crown name="MultiImageEdgeMatcher_FC">
+            <trait>released</trait>
+            <desc>Crown to provide CSK_FlowConfig relevant features.</desc>
+            <serves/>
+            <crown name="ImageSource">
+                <desc>Set source of images to process.</desc>
+                <serves>
+                    <function name="create">
+                        <desc>Internally used CSK_FlowConfig create function.</desc>
+                        <param constraint="1-99" desc="Numeric identifier of processing instance." multiplicity="1" name="Instance" type="int"/>
+                        <return desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                    </function>
+                    <function name="imageSource">
+                        <include>data-flow</include>
+                        <desc>Set source of images to process.</desc>
+                        <param desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                        <param desc="Set source of images to process.&#10;&#10;Parameter:&#10;1: image (IMAGE)" multiplicity="1" name="imageSource" type="string"/>
+                    </function>
+                </serves>
+            </crown>
+            <crown name="OnNewImage">
+                <trait>released</trait>
+                <desc>Provide image aligned according to found object match.</desc>
+                <serves>
+                    <event name="OnNewImage">
+                        <include>data-flow</include>
+                        <desc>Provide image aligned according to found object match.</desc>
+                        <param desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                        <param desc="'CSK_MultiImageEdgeMatcher.OnNewAlignedImage[InstanceNUM]'&#10;&#10;Parameter:&#10;1: aligned image (IMAGE)" multiplicity="1" name="OnNewImage" ref="CSK_MultiColorSelection_FC.ResultType" type="string"/>
+                    </event>
+                    <function name="create">
+                        <trait>released</trait>
+                        <desc>Internally used CSK_FlowConfig create function.</desc>
+                        <param constraint="1-99" desc="Numeric identifier of processing instance." multiplicity="1" name="Instance" type="int"/>
+                        <return desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                    </function>
+                    <function name="register">
+                        <trait>released</trait>
+                        <desc>Internally used CSK_FlowConfig register function.</desc>
+                        <param desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                        <param desc="Internal parameter (not used)." multiplicity="1" name="eventname" type="string"/>
+                        <param desc="Internally used callback function." multiplicity="1" name="callback" type="string"/>
+                        <return desc="Success of register process." multiplicity="1" name="success" type="bool"/>
+                    </function>
+                </serves>
+            </crown>
+            <crown name="Process">
+                <desc>Set source of images to process and provide image aligned to found match and related transformation.</desc>
+                <serves>
+                    <function name="create">
+                        <desc>Internally used CSK_FlowConfig create function.</desc>
+                        <param constraint="1-99" desc="Number of processing instance." multiplicity="1" name="Instance" type="int"/>
+                        <return desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                    </function>
+                    <function name="process">
+                        <include>data-flow</include>
+                        <desc>Set source of images to process and provide image aligned to found match and related transformation.</desc>
+                        <param desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                        <param desc="Set source of images to process.&#10;&#10;Parameter:&#10;1: image (IMAGE)" multiplicity="1" name="imageSource" type="string"/>
+                        <return desc="'CSK_MultiImageEdgeMatcher.OnNewAlignedImage[InstanceNUM]'&#10;&#10;Parameter:&#10;1: aligned image (IMAGE)" multiplicity="1" name="OnNewImage" type="string"/>
+                        <return desc="'CSK_MultiImageEdgeMatcher.OnNewTransformation[InstanceNUM]'&#10;&#10;Parameter:&#10;1: transformation (TRANSFORM)" multiplicity="1" name="OnNewTransformation" type="string"/>
+                    </function>
+                </serves>
+            </crown>
+            <crown name="OnNewTransformation">
+                <trait>released</trait>
+                <desc>Provide transformation of found match.</desc>
+                <serves>
+                    <event name="OnNewTransformation">
+                        <include>data-flow</include>
+                        <desc>Provide transformation of found match.</desc>
+                        <param desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                        <param desc="'CSK_MultiImageEdgeMatcher.OnNewTransformation[InstanceNUM]'&#10;&#10;Parameter:&#10;1: transformation (TRANSFORM)" multiplicity="1" name="OnNewTransformation" ref="CSK_MultiColorSelection_FC.ResultType" type="string"/>
+                    </event>
+                    <function name="create">
+                        <trait>released</trait>
+                        <desc>Internally used CSK_FlowConfig create function.</desc>
+                        <param constraint="1-99" desc="Numeric identifier of processing instance." multiplicity="1" name="Instance" type="int"/>
+                        <return desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                    </function>
+                    <function name="register">
+                        <trait>released</trait>
+                        <desc>Internally used CSK_FlowConfig register function.</desc>
+                        <param desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
+                        <param desc="Internal parameter (not used)." multiplicity="1" name="eventname" type="string"/>
+                        <param desc="Internally used callback function." multiplicity="1" name="callback" type="string"/>
+                        <return desc="Success of register process." multiplicity="1" name="success" type="bool"/>
+                    </function>
+                </serves>
+            </crown>
+        </crown>
+        <meta key="author">SICK AG</meta>
+        <meta key="version">2.0.0</meta>
+        <meta key="priority">low</meta>
+        <meta key="copy-protected">false</meta>
+        <meta key="read-protected">false</meta>
+        <meta key="crown2-flow-engine">false</meta>
+        <meta key="LuaLoadAllEngineAPI">false</meta>
+        <entry default="CSK_Module_MultiImageEdgeMatcher.lua" path="scripts"/>
+    </application>
+</manifest>
