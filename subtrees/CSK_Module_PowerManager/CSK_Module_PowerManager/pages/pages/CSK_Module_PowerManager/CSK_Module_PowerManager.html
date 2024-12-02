@@ -1,0 +1,249 @@
+<layout-row id="RowLayout1" class="myCustomBackground_CSK_Module_PowerManager">
+    <layout-column id="ColumnLayout3" class="myCustomFrameNoColor_CSK_Module_PowerManager" style="align-items: stretch">
+        <layout-row id="RowLayout7" class="myCustomSpacerVert20_CSK_Module_PowerManager">
+        </layout-row>
+        <layout-row id="RowLayout8">
+            <layout-column id="ColumnLayout9" style="align-items: stretch">
+                <layout-row id="RowLayout14" style="align-items: baseline">
+                    <davinci-value-display id="VD_Title" class="myCustomLabel_CSK_Module_PowerManager"
+                        value="Power Manager">
+                    </davinci-value-display>
+                    <davinci-value-display id="VD_Version">
+                        <crown-edpws-binding property="value" name="CSK_PowerManager/OnNewStatusModuleVersion"
+                            update-on-resume>
+                        </crown-edpws-binding>
+                    </davinci-value-display>
+                </layout-row>
+            </layout-column>
+        </layout-row>
+        <stacked-view id="SV_FeatureSupport">
+            <stacked-pane id="SP_Supported" value="true">
+                <stacked-view id="SV_Login" style="flex-grow: 1">
+                    <stacked-pane id="SP_LoginOK" value="true" style="flex-grow: 1">
+                        <layout-row id="RowLayout4" style="justify-content: space-between">
+                            <layout-column id="ColumnLayout10" style="align-items: stretch">
+                                <layout-row id="RowLayout9" class="myCustomMarginFirstRow_CSK_Module_PowerManager">
+                                    <layout-column id="ColumnLayout11" style="align-items: stretch">
+                                    </layout-column>
+                                    <layout-column id="ColumnLayout12"
+                                        class="myCustomBorderLeft_CSK_Module_PowerManager" style="align-items: stretch">
+                                        <layout-row id="RowLayout46" style="align-items: baseline">
+                                            <layout-column id="ColumnLayout81" style="align-items: stretch">
+                                                <layout-row id="RowLayout24" style="align-items: center">
+                                                    <layout-column id="ColumnLayout57" style="align-items: stretch">
+                                                        <davinci-value-display id="VD_PersistentDatax"
+                                                            value="Persistent Data">
+                                                        </davinci-value-display>
+                                                    </layout-column>
+                                                    <layout-column id="ColumnLayout73"
+                                                        style="align-items: stretch; flex-grow: 2">
+                                                        <davinci-text-field id="TF_ParameterName" type="text"
+                                                            title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+                                                            <crown-edpws-binding property="value"
+                                                                name="CSK_PowerManager/OnNewParameterName"
+                                                                update-on-resume>
+                                                            </crown-edpws-binding>
+                                                            <crown-binding event="change"
+                                                                name="CSK_PowerManager/setParameterName"
+                                                                path="param/args/name" auto-commit>
+                                                            </crown-binding>
+                                                            <crown-edpws-binding property="disabled"
+                                                                name="CSK_PowerManager/OnPersistentDataModuleAvailable"
+                                                                update-on-resume
+                                                                converter="function(value) {return !value;}">
+                                                            </crown-edpws-binding>
+                                                        </davinci-text-field>
+                                                    </layout-column>
+                                                    <layout-column id="Column_PersistentDatax"
+                                                        style="align-items: stretch">
+                                                        <layout-row id="RowLayout55">
+                                                            <layout-column id="ColumnLayout76"
+                                                                style="align-items: stretch">
+                                                                <layout-row id="RowLayout34"
+                                                                    class="myCustomMarginTop7PX_CSK_Module_PowerManager"
+                                                                    style="justify-content: center; align-items: center">
+                                                                    <davinci-button id="B_LoadConfig"
+                                                                        class="myCustomButton_CSK_Module_PowerManager"
+                                                                        type="outline" icon-position="append"
+                                                                        title="Load configured parameters from CSK_PersistentData module."
+                                                                        icon="action/history">
+                                                                        <span></span>
+                                                                        <crown-edpws-binding property="disabled"
+                                                                            name="CSK_PowerManager/OnPersistentDataModuleAvailable"
+                                                                            update-on-resume
+                                                                            converter="function(value) {return !value;}">
+                                                                        </crown-edpws-binding>
+                                                                        <crown-binding event="submit"
+                                                                            name="CSK_PowerManager/loadParameters"
+                                                                            auto-commit>
+                                                                        </crown-binding>
+                                                                    </davinci-button>
+                                                                    <davinci-button id="B_SaveConfig"
+                                                                        class="myCustomButton_CSK_Module_PowerManager"
+                                                                        type="outline" icon-position="append"
+                                                                        title="Save current configured parameters of this module within CSK_PersistentData module."
+                                                                        icon="content/save">
+                                                                        <span></span>
+                                                                        <crown-set event="submit"
+                                                                            crown-function="CSK_PowerManager/sendParameters"
+                                                                            protocol="crownMSGPACK">
+                                                                        </crown-set>
+                                                                        <crown-edpws-binding property="disabled"
+                                                                            name="CSK_PowerManager/OnPersistentDataModuleAvailable"
+                                                                            update-on-resume
+                                                                            converter="function(value) {return !value;}">
+                                                                        </crown-edpws-binding>
+                                                                    </davinci-button>
+                                                                </layout-row>
+                                                            </layout-column>
+                                                        </layout-row>
+                                                    </layout-column>
+                                                </layout-row>
+                                                <layout-row id="RowLayout57" style="align-items: center">
+                                                    <layout-column id="ColumnLayout511" style="align-items: stretch">
+                                                        <davinci-collapse id="Collapse_PersistentData"
+                                                            class="myCustomPersistentDataMargin_CSK_Module_PowerManager"
+                                                            collapsed-title="..." expanded-title="...">
+                                                            <layout-row id="RowLayout45"
+                                                                class="myCustomPersistentDataMarginBack_CSK_Module_PowerManager"
+                                                                style="align-items: center">
+                                                                <layout-column id="ColumnLayout6x"
+                                                                    style="align-items: stretch">
+                                                                </layout-column>
+                                                                <layout-column id="ColumnLayout72"
+                                                                    style="align-items: stretch; flex-grow: 2">
+                                                                    <layout-row id="RowLayout3">
+                                                                        <layout-column id="ColumnLayout4"
+                                                                            style="align-items: stretch">
+                                                                            <layout-row id="RowLayout2x"
+                                                                                style="align-items: center">
+                                                                                <davinci-value-display
+                                                                                    id="VD_LoadConfig"
+                                                                                    value="Load on reboot:"
+                                                                                    title="Load configured parameters from CSK_PersistentData on app start.">
+                                                                                </davinci-value-display>
+                                                                                <davinci-checkbox id="CB_LoadConfig"
+                                                                                    title="Load configured parameters from CSK_PersistentData on app start.">
+                                                                                    <span></span>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_PowerManager/setLoadOnReboot"
+                                                                                        path="param/args/status"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                    <crown-edpws-binding
+                                                                                        property="checked"
+                                                                                        name="CSK_PowerManager/OnNewStatusLoadParameterOnReboot"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-edpws-binding
+                                                                                        property="disabled"
+                                                                                        name="CSK_PowerManager/OnPersistentDataModuleAvailable"
+                                                                                        update-on-resume
+                                                                                        converter="function(value) {return !value;}">
+                                                                                    </crown-edpws-binding>
+                                                                                </davinci-checkbox>
+                                                                            </layout-row>
+                                                                        </layout-column>
+                                                                        <layout-column id="ColumnLayout77"
+                                                                            style="align-items: stretch">
+                                                                        </layout-column>
+                                                                    </layout-row>
+                                                                </layout-column>
+                                                                <layout-column id="ColumnLayout79"
+                                                                    style="align-items: stretch">
+                                                                </layout-column>
+                                                            </layout-row>
+                                                        </davinci-collapse>
+                                                    </layout-column>
+                                                </layout-row>
+                                            </layout-column>
+                                        </layout-row>
+                                    </layout-column>
+                                </layout-row>
+                                <layout-row id="RowLayout60" class="myCustomSpacerVert10_CSK_Module_PowerManager"
+                                    style="flex-grow: 0; flex-shrink: 0">
+                                </layout-row>
+                                <layout-row id="RowLayout47" class="myCustomBorderBottom_CSK_Module_PowerManager"
+                                    style="flex-grow: 0; flex-shrink: 0">
+                                </layout-row>
+                                <layout-row id="RowLayout61" class="myCustomSpacerVert20_CSK_Module_PowerManager"
+                                    style="flex-grow: 0; flex-shrink: 0">
+                                </layout-row>
+                                <layout-row id="RowLayout10">
+                                    <layout-column id="ColumnLayout1" class="myCustomFrame_CSK_Module_PowerManager"
+                                        style="align-items: stretch">
+                                        <davinci-value-display id="VD_PortStatus"
+                                            class="myCustomFrameLabel_CSK_Module_PowerManager" label="Port Status"
+                                            style="align-self: flex-start">
+                                        </davinci-value-display>
+                                        <curie-table id="DT_PowerConnectorStatusList" selectable
+                                            select-mode="highlight_row">
+                                            <curie-table-column id="PowerConnector" header="PowerConnector"
+                                                style="flex-grow: 1">
+                                            </curie-table-column>
+                                            <curie-table-column id="Status" header="Status">
+                                            </curie-table-column>
+                                            <crown-edpws-binding property="data"
+                                                name="CSK_PowerManager/OnNewInterfaceList" update-on-resume>
+                                            </crown-edpws-binding>
+                                            <crown-binding event="row-selected" name="CSK_PowerManager/selectInterface"
+                                                path="param/args/selection" auto-commit>
+                                            </crown-binding>
+                                        </curie-table>
+                                        <layout-row id="RowLayout2" style="justify-content: flex-end">
+                                            <davinci-button id="B_ChangeStatus"
+                                                class="myCustomButton_CSK_Module_PowerManager" type="outline"
+                                                icon-position="append" title="Set status for all ports"
+                                                icon="action/power_settings_new">
+                                                <span></span>
+                                                <crown-binding event="submit" name="CSK_PowerManager/setAllStatus"
+                                                    auto-commit>
+                                                </crown-binding>
+                                            </davinci-button>
+                                        </layout-row>
+                                    </layout-column>
+                                    <layout-column id="ColumnLayout2" style="align-items: stretch">
+                                    </layout-column>
+                                </layout-row>
+                            </layout-column>
+                        </layout-row>
+                    </stacked-pane>
+                    <stacked-pane id="SP_NotLoggedIn" value="false">
+                        <layout-column id="ColumnLayout6" style="align-items: stretch">
+                            <davinci-callout id="Callout31" type="info">
+                                <span>
+									Please login with minimum user level Maintenance to see this page.
+								</span>
+                            </davinci-callout>
+                        </layout-column>
+                    </stacked-pane>
+                    <crown-edpws-binding property="value" name="CSK_PowerManager/OnUserLevelMaintenanceActive"
+                        update-on-resume converter="function(value) {return value.toString();}">
+                    </crown-edpws-binding>
+                </stacked-view>
+            </stacked-pane>
+            <stacked-pane id="SP_NoSupport" value="false">
+                <layout-row id="RowLayout6">
+                    <layout-column id="ColumnLayout8">
+                        <davinci-callout id="Callout51" type="warning" style="width: 99%">
+                            <span>Module is not supported on this device...</span>
+                        </davinci-callout>
+                        <img id="UI_sample" src="assets/CSK_Module_PowerManager/UI_sample.png"
+							alt="UI sample">
+                    </layout-column>
+                </layout-row>
+            </stacked-pane>
+            <crown-edpws-binding property="value" name="CSK_PowerManager/OnNewStatusModuleIsActive" update-on-resume
+                converter="function(value) {return value.toString();}">
+            </crown-edpws-binding>
+        </stacked-view>
+        <stacked-view id="SV_PageCalled">
+            <crown-binding property="value" name="CSK_PowerManager/pageCalled" path="result/data/emptyString"
+                auto-update="0" update-on-resume>
+            </crown-binding>
+            <crown-edpws-binding property="value" name="CSK_PowerManager/OnNewStatusCSKStyle" update-on-resume
+                converter="changeStyle">
+            </crown-edpws-binding>
+        </stacked-view>
+    </layout-column>
+</layout-row>
