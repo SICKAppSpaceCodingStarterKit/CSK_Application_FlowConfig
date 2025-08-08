@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest>
+    <application name="CSK_Module_FileManager">
+        <crown name="CSK_Module_FileManager">
+            <desc>This is an automatically generated CROWN (description not necessary).</desc>
+        </crown>
+        <crown name="CSK_FileManager">
+            <trait>released</trait>
+            <desc>Module to provide device file management functionalities like creating / removing folders, downloading / uploading files. +
+Please check the UI of this module. +</desc>
+            <serves>
+                <event name="OnNewStatusLoadParameterOnReboot">
+                    <desc>Notify status if parameters should be loaded on app/device boot up.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnPersistentDataModuleAvailable">
+                    <desc>Notify status if features of CSK_PersistendData module are available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnDataLoadedOnReboot">
+                    <desc>Event to call if module tried to load parameters and should be ready.</desc>
+                </event>
+                <event name="OnNewParameterName">
+                    <desc>Notify name of persistent data parameter.</desc>
+                    <param desc="Parameter name" multiplicity="1" name="name" type="string"/>
+                </event>
+                <event name="OnUserLevelOperatorActive">
+                    <desc>Status of Operator userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelMaintenanceActive">
+                    <desc>Status of Maintenance userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelServiceActive">
+                    <desc>Status of Service userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelAdminActive">
+                    <desc>Status of Admin userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusFileList">
+                    <desc>Notify list of available files.</desc>
+                    <param desc="List of files." multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewStatusSelectedFile">
+                    <desc>Notify name of file selected within list of files.</desc>
+                    <param desc="Name of file." multiplicity="1" name="filename" type="string"/>
+                </event>
+                <event name="OnNewStatusAvailableSources">
+                    <desc>Notify available file sources.</desc>
+                    <param desc="List of sources." multiplicity="1" name="sources" type="string"/>
+                </event>
+                <event name="OnNewStatusSelectedSource">
+                    <desc>Notify selected file source.</desc>
+                    <param desc="Source" multiplicity="1" name="source" type="string"/>
+                </event>
+                <event name="OnNewStatusDownloadFilename">
+                    <desc>Notify name for file to download.</desc>
+                    <param desc="Name of file." multiplicity="1" name="filename" type="string"/>
+                </event>
+                <event name="OnNewStatusFileToDownload">
+                    <desc>Notify full path to file to download.</desc>
+                    <param desc="Path" multiplicity="1" name="path" type="string"/>
+                </event>
+                <event name="OnNewStatusPath">
+                    <desc>Notify path to e.g. store uploaded files, create new / remove folder.</desc>
+                    <param desc="Path" multiplicity="1" name="path" type="string"/>
+                </event>
+                <event name="OnNewStatusCalloutText">
+                    <desc>Notify text for UI callout.</desc>
+                    <param desc="Text" multiplicity="1" name="text" type="string"/>
+                </event>
+                <event name="OnNewStatusCalloutType">
+                    <desc>Notify type of UI callout.</desc>
+                    <param desc="Type" multiplicity="1" name="type" type="string"/>
+                </event>
+                <event name="OnNewStatusShowCallout">
+                    <desc>Notify status if UI callout should be shown.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusDiskInfo">
+                    <desc>Notify free / used space of the selected file source.</desc>
+                    <param desc="Info" multiplicity="1" name="info" type="string"/>
+                </event>
+                <event name="OnNewStatusCSKStyle">
+                    <desc>Notify UI style to use for CSK modules.</desc>
+                    <param desc="UI style" multiplicity="1" name="theme" type="string"/>
+                </event>
+                <event name="OnNewStatusModuleVersion">
+                    <desc>Notify version of module.</desc>
+                    <param desc="Version" multiplicity="1" name="version" type="string"/>
+                </event>
+                <event name="OnNewStatusModuleIsActive">
+                    <desc>Notify if module can be used on device.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <function name="pageCalled">
+                    <desc>Function to register "OnResume" of the module UI (only as helper function).</desc>
+                    <return desc="Empty string (only needed to simplify binding)." multiplicity="1" name="empty" type="string"/>
+                </function>
+                <function name="selectFile">
+                    <desc>Function to select file out of filelist.</desc>
+                    <param desc="Full name of selected file (incl. path to it)." multiplicity="1" name="filename" type="string"/>
+                </function>
+                <function name="selectFileSource">
+                    <desc>Function to select source of files.</desc>
+                    <param desc="Source of files (e.g. '/public', '/ram')." multiplicity="1" name="source" type="string"/>
+                </function>
+                <function name="setPath">
+                    <desc>Function to set path to e.g. uploaded files, create folder.</desc>
+                    <param desc="Path" multiplicity="1" name="path" type="string"/>
+                </function>
+                <function name="fileUploadFinished">
+                    <desc>Function to react on file upload (used to give feedback for upload process).</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="deleteFile">
+                    <desc>Function to delete preselected file (see 'selectFile').</desc>
+                </function>
+                <function name="createFolder">
+                    <desc>Function to create new folder at preset location (check 'setPath').</desc>
+                </function>
+                <function name="deleteFolder">
+                    <desc>Function to delete preset folder (check 'setPath').</desc>
+                </function>
+                <function name="updateListOfFiles">
+                    <desc>Function to update list of files.</desc>
+                </function>
+                <function name="getStatusModuleActive">
+                    <desc>Function to get status if module is active.</desc>
+                    <return desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+            </serves>
+        </crown>
+        <meta key="author">SICK AG</meta>
+        <meta key="version">1.1.1</meta>
+        <meta key="priority">low</meta>
+        <meta key="copy-protected">false</meta>
+        <meta key="read-protected">false</meta>
+        <meta key="crown2-flow-engine">false</meta>
+        <meta key="LuaLoadAllEngineAPI">true</meta>
+        <entry default="CSK_Module_FileManager.lua" path="scripts"/>
+    </application>
+</manifest>
