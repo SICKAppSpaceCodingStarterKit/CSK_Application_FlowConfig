@@ -1,0 +1,106 @@
+.myCustomLabel_CSK_Application_FlowConfig {
+  font-size:30px;
+  color: grey;
+  margin-top: 10px;
+}
+
+.myCustomFrameNoColor_CSK_Application_FlowConfig {
+  margin: 6px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 0px;
+  border-color: 007CC1;
+  background-color: white;
+}
+
+.myCustomFrame_CSK_Application_FlowConfig {
+  margin: 6px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #007CC1;
+  background-color: white;
+}
+
+.myCustomSpacerVert10_CSK_Application_FlowConfig {
+  min-height: 10px;
+}
+
+.myCustomSpacerVert20_CSK_Application_FlowConfig {
+  min-height: 20px;
+}
+
+.myCustomSpacerVert40_CSK_Application_FlowConfig {
+  min-height: 40px;
+}
+
+.myCustomBorderLeft_CSK_Application_FlowConfig {
+  border-left: 1px solid lightgray;
+}
+
+.myCustomBorderBottom_CSK_Application_FlowConfig {
+  border-bottom: 1px solid lightgray;
+  margin-inline: calc(1rem);
+}
+
+.myCustomMarginFirstRow_CSK_Application_FlowConfig {
+  margin-top: -49px;
+}
+
+.myCustomTopic_CSK_Application_FlowConfig {
+  font-size: 18px;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.myCustomMainLabel_CSK_Application_FlowConfig {
+  font-size: 55px;
+  font-weight: 600;
+}
+
+.myCustomSubLabel_CSK_Application_FlowConfig {
+  font-size: 18px;
+}
+
+.myCustomPersistentDataMargin_CSK_Application_FlowConfig {
+  margin-top: -53px;
+  margin-left: 130px;
+}
+
+.myCustomPersistentDataMarginBack_CSK_Application_FlowConfig {
+  margin-left: -127px;
+}
+
+.myCustomMarginTop7PX_CSK_Application_FlowConfig {
+  margin-top: 7px;
+}
+
+.myCustomMarginTop68px_CSK_Application_FlowConfig {
+  margin-top: -68px;
+  margin-left: -12px;
+  z-index: 0;
+}
+
+.myCustomZIndex1_CSK_Application_FlowConfig {
+  z-index: 1;
+}
+
+.myCustomBackground_CSK_Application_FlowConfig {
+}
+
+.myCustomButtonNoBorder_CSK_Application_FlowConfig {
+  border-width: 0px;
+  padding-right: 0px;
+}
+
+.myCustomButton_CSK_Application_FlowConfig {
+  border-radius: 30px;
+  padding-right: 0px;
+}
+
+.myCustomStopButton_CSK_Application_FlowConfig {
+  border-radius: 30px;
+  margin-right: 30px;
+  margin-top: -12px;
+  margin-bottom: 1px;
+}

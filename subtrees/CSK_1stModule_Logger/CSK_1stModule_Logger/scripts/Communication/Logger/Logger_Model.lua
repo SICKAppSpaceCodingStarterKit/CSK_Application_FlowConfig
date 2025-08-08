@@ -109,6 +109,7 @@ local function loggerCallback(message, path, level, timestamp, appName, appPosit
 
   sendLog()
 end
+logger_Model.loggerCallback = loggerCallback
 
 --- Function to setup the logger
 local function setupLogHandler()

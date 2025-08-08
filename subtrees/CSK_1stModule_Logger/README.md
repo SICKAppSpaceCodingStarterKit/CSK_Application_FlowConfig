@@ -17,8 +17,9 @@ For further information check out the [documentation](https://raw.githack.com/SI
 Tested on:  
 |Device|Firmware|Module version|
 |--|--|--|
-|SICK AppEngine|V1.7.0|V4.2.0|
+|SIM1012|V2.4.2|V4.2.1|
 |SIM1012|V2.4.2|V4.2.0|
+|SICK AppEngine|V1.7.0|V4.2.0|
 |SICK AppEngine|V1.3.2|<V4.2.0|
 |SIM1012|V2.2.0|<V4.2.0|
 

@@ -5,13 +5,12 @@
         <layout-row id="RowLayout8">
             <layout-column id="ColumnLayout9" style="align-items: stretch">
                 <layout-row id="RowLayout14" style="align-items: baseline">
-                    <davinci-value-display id="VD_Title" class="myCustomLabel_CSK_Module_PowerManager"
-                        value="Power Manager">
-                    </davinci-value-display>
+                    <h1 id="Heading_Title" class="myCustomLabel_CSK_Module_PowerManager">
+                        Power Manager
+                    </h1>
                     <davinci-value-display id="VD_Version">
-                        <crown-edpws-binding property="value" name="CSK_PowerManager/OnNewStatusModuleVersion"
-                            update-on-resume>
-                        </crown-edpws-binding>
+                        <crown-on property="value" crown-event="CSK_PowerManager/OnNewStatusModuleVersion">
+                        </crown-on>
                     </davinci-value-display>
                 </layout-row>
             </layout-column>
@@ -64,9 +63,10 @@
                                                                     style="justify-content: center; align-items: center">
                                                                     <davinci-button id="B_LoadConfig"
                                                                         class="myCustomButton_CSK_Module_PowerManager"
-                                                                        type="outline" icon-position="append"
-                                                                        title="Load configured parameters from CSK_PersistentData module."
-                                                                        icon="action/history">
+                                                                        type="outline"
+                                                                        title="Load configured parameters from CSK_PersistentData module.">
+                                                                        <davinci-icon icon="action/history">
+                                                                        </davinci-icon>
                                                                         <span></span>
                                                                         <crown-edpws-binding property="disabled"
                                                                             name="CSK_PowerManager/OnPersistentDataModuleAvailable"
@@ -80,9 +80,10 @@
                                                                     </davinci-button>
                                                                     <davinci-button id="B_SaveConfig"
                                                                         class="myCustomButton_CSK_Module_PowerManager"
-                                                                        type="outline" icon-position="append"
-                                                                        title="Save current configured parameters of this module within CSK_PersistentData module."
-                                                                        icon="content/save">
+                                                                        type="outline"
+                                                                        title="Save current configured parameters of this module within CSK_PersistentData module.">
+                                                                        <davinci-icon icon="content/save">
+                                                                        </davinci-icon>
                                                                         <span></span>
                                                                         <crown-set event="submit"
                                                                             crown-function="CSK_PowerManager/sendParameters"
@@ -193,8 +194,8 @@
                                         <layout-row id="RowLayout2" style="justify-content: flex-end">
                                             <davinci-button id="B_ChangeStatus"
                                                 class="myCustomButton_CSK_Module_PowerManager" type="outline"
-                                                icon-position="append" title="Set status for all ports"
-                                                icon="action/power_settings_new">
+                                                title="Set status for all ports">
+                                                <davinci-icon icon="action/power_settings_new"></davinci-icon>
                                                 <span></span>
                                                 <crown-binding event="submit" name="CSK_PowerManager/setAllStatus"
                                                     auto-commit>

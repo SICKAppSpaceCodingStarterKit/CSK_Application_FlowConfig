@@ -213,6 +213,7 @@ Script.serveFunction('CSK_Logger.setLogFileSize', setLogFileSize)
 
 local function setCallbackSinkActive(status)
   _G.logger:fine(nameOfModule .. ': Set status of callBackSink to ' .. tostring(status))
+  logger_Model.loggerCallback(nameOfModule .. ': Set status of callBackSink to ' .. tostring(status), nil, 'FINE')
   logger_Model.parameters.callBackSink = status
   logger_Model.setupLogHandler()
   handleOnExpiredTmrLogger()

@@ -38,10 +38,15 @@ local flowConfig_Model
 
 -- ************************ UI Events Start ********************************
 
+Script.serveEvent('CSK_FlowConfig.OnExpired_TYPE_TIME_VALUE', 'FlowConfig_OnExpired_TYPE_TIME_VALUE')
+Script.serveEvent('CSK_FlowConfig.OnNewLogicResult_ID', 'FlowConfig_OnNewLogicResult_ID')
+Script.serveEvent('CSK_FlowConfig.OnNewValueToForward_ID', 'FlowConfig_OnNewValueToForward_ID')
+
 Script.serveEvent('CSK_FlowConfig.OnNewValue', 'FlowConfig_OnNewValue')
 Script.serveEvent('CSK_FlowConfig.OnNewStatusModuleVersion', 'FlowConfig_OnNewStatusModuleVersion')
 Script.serveEvent('CSK_FlowConfig.OnNewStatusCSKStyle', 'FlowConfig_OnNewStatusCSKStyle')
 Script.serveEvent('CSK_FlowConfig.OnNewStatusModuleIsActive', 'FlowConfig_OnNewStatusModuleIsActive')
+Script.serveEvent('CSK_FlowConfig.OnNewStatusFlowConfigReady', 'FlowConfig_OnNewStatusFlowConfigReady')
 
 Script.serveEvent('CSK_FlowConfig.OnNewStatusFlowActiveUIInfo', 'FlowConfig_OnNewStatusFlowActiveUIInfo')
 
@@ -52,6 +57,7 @@ Script.serveEvent('CSK_FlowConfig.OnNewStatusSaveMode', 'FlowConfig_OnNewStatusS
 
 Script.serveEvent('CSK_FlowConfig.OnNewFlowConfig', 'FlowConfig_OnNewFlowConfig')
 Script.serveEvent('CSK_FlowConfig.OnClearOldFlow', 'FlowConfig_OnClearOldFlow')
+Script.serveEvent('CSK_FlowConfig.OnStopFlowConfigProviders', 'FlowConfig_OnStopFlowConfigProviders')
 
 Script.serveEvent('CSK_FlowConfig.OnNewFlow', 'FlowConfig_OnNewFlow')
 Script.serveEvent('CSK_FlowConfig.OnNewManifest', 'FlowConfig_OnNewManifest')
@@ -214,7 +220,7 @@ end
 Timer.register(triggerTimer, 'OnExpired', handleOnExpiredTriggerTimer)
 
 local function openUI(nameOfBlock)
-  if nameOfBlock == 'FlowConfig_FC.OnNewValue.OnNewValue' then
+  if nameOfBlock == 'FlowConfig_FC.OnNewValue.OnNewValue' or nameOfBlock == 'FlowConfig_FC.OnExpired.OnExpired' or nameOfBlock == 'FlowConfig_FC.ProcessLogic.processLogic' then
     Script.notifyEvent("FlowConfig_OnNewStatusFlowActiveUIInfo", 'noUI')
     tmrUIMessage:start()
   end
@@ -231,6 +237,7 @@ local function stopTriggerTimer()
   triggerTimer:stop()
 end
 Script.serveFunction('CSK_FlowConfig.stopTriggerTimer', stopTriggerTimer)
+Script.register('CSK_FlowConfig.OnStopFlowConfigProviders', stopTriggerTimer)
 
 local function saveAllModuleConfigs()
   if flowConfig_Model.saveAllPersistentDataAvailable then
@@ -340,6 +347,14 @@ local function getStatusModuleActive()
   return _G.availableAPIs.default and _G.availableAPIs.specific
 end
 Script.serveFunction('CSK_FlowConfig.getStatusModuleActive', getStatusModuleActive)
+
+local function stopFlowProviders()
+  _G.logger:fine(nameOfModule .. ': Stop FlowConfig providers.')
+  Script.notifyEvent('FlowConfig_OnStopFlowConfigProviders')
+  Script.notifyEvent("FlowConfig_OnNewStatusFlowActiveUIInfo", 'stopFlowProvider')
+  tmrUIMessage:start()
+end
+Script.serveFunction('CSK_FlowConfig.stopFlowProviders', stopFlowProviders)
 
 -- *****************************************************************
 -- Following function can be adapted for CSK_PersistentData module usage

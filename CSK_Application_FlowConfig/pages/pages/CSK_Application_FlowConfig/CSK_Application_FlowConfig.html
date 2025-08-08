@@ -1,0 +1,89 @@
+<layout-row id="RowLayout1" class="myCustomBackground_myCustomFrameNoColor_CSK_Application_FlowConfig">
+    <layout-column id="ColumnLayout1" class="myCustomFrameNoColor_CSK_Application_FlowConfig"
+        style="align-items: stretch">
+        <layout-row id="RowLayout3" style="justify-content: center">
+            <curie-image id="DI_Logo" src="assets/CSK_Application_FlowConfig/CSK_UIHeaderSmall.png"
+                style="width: 805px; height: 128px">
+            </curie-image>
+        </layout-row>
+        <layout-row id="RowLayout4" class="myCustomSpacerVert40_CSK_Application_FlowConfig">
+        </layout-row>
+        <layout-row id="RowLayout13" style="justify-content: center; flex-grow: 0; flex-shrink: 0; align-items: center">
+            <h1 id="Heading_Title" class="myCustomMainLabel_CSK_Application_FlowConfig">
+                SICK AppSpace Coding Starter Kit
+            </h1>
+        </layout-row>
+        <layout-row id="RowLayout7" class="myCustomSpacerVert40_CSK_Application_FlowConfig">
+        </layout-row>
+        <layout-row id="RowLayout5" class="myCustomBorderBottom_CSK_Application_FlowConfig">
+        </layout-row>
+        <layout-row id="RowLayout2" class="myCustomSpacerVert40px_SICK_WelcomeApp" style="flex-grow: 0; flex-shrink: 0">
+        </layout-row>
+        <layout-row id="RowLayout11" style="justify-content: center; flex-grow: 0; flex-shrink: 0; align-items: center">
+            <h4 id="Heading61">
+                <span>
+The SICK AppSpace Coding Starter Kit (CSK) provides a starting point for coding SensorApps. It consists of a <b>collection</b> of starter kit modules.
+<br>
+Each module provides a <b>specific functionality</b>, such as TCP/IP, IO-Link, FTP, camera setup, power control, logging, user management and many more.
+<br>
+<br>
+Modules appear as apps in the SICK AppStudio workspace, provide their <b>key functionalities as served functions/events </b> and optionally contain a user interface (UI).
+<br>
+By using and combining these modules, SensorApp developers do not have to start programming from scratch, but work with a <b>modular, extensible architecture</b> right from the start.
+<br>
+<br>
+You can find the CSK features, which are currently already installed on this device <a href="/#!msdd=SICK_WelcomeApp&page=Features" target="_blank">here</a>.
+<br>
+<br>
+Visit the <a href="http://apppool.cloud.sick.com/publications/search/CSK" target="_blank">SICK AppPool</a> to install additional CSK feature bundles (like the CSK_Communication_Bundle, CSK_ImageProcessing_Bundle, etc.).
+<br>
+<br>
+Furthermore, some modules even provide the possibility to link their features in a graphical <a href="/#!msdd=CSK_Application_FlowConfig&page=Flow%2520Config" target="_blank">flow configuration</a> to make it possible to solve applications even <b>without any coding</b>.
+<br>
+<br>
+<b>General information</b> about CSK is available on <a href="http://github.com/SICKAppSpaceCodingStarterKit" target="_blank"> GitHub </a>.
+				</span>
+            </h4>
+        </layout-row>
+        <stacked-view id="SV_WelcomeAppAvailable">
+            <stacked-pane id="SP_WelcomeAppAvailable" value="true">
+                <layout-row id="RowLayout6"
+                    style="justify-content: flex-end; align-items: flex-end; flex-grow: 0; flex-shrink: 0">
+                    <h4 id="Heading62">
+                        <span>
+							Back to <a href="/#!msdd=SICK_WelcomeApp" target="_blank">WelcomeApp</a>
+						</span>
+                    </h4>
+                </layout-row>
+            </stacked-pane>
+            <stacked-pane id="SP_WelcomeAppNotAvailable" value="false">
+            </stacked-pane>
+            <crown-edpws-binding property="value" name="CSK_Application_FlowConfig/OnNewStatusWelcomeAppAvailable"
+                update-on-resume converter="function(value) {return value.toString();}">
+            </crown-edpws-binding>
+        </stacked-view>
+        <layout-row id="RowLayout17" class="myCustomSpacerVert40_CSK_Application_FlowConfig">
+        </layout-row>
+        <layout-row id="RowLayout15" class="myCustomBorderBottom_CSK_Application_FlowConfig">
+        </layout-row>
+        <layout-row id="RowLayout12" style="align-items: flex-end; justify-content: flex-end">
+            <layout-column id="ColumnLayout2" style="align-items: flex-end">
+                <davinci-value-display id="VD_Version">
+                    <crown-on property="value" crown-event="CSK_Application_FlowConfig/OnNewStatusModuleVersion">
+                    </crown-on>
+                </davinci-value-display>
+                <davinci-value-display id="VD_Resolution"
+                    value="Developed for a screen resolution of 1920x1080px, 100% scaling">
+                </davinci-value-display>
+            </layout-column>
+        </layout-row>
+        <stacked-view id="SV_PageCalled">
+            <crown-binding property="value" name="CSK_Application_FlowConfig/pageCalled" path="result/data/empty"
+                auto-update="0" update-on-resume>
+            </crown-binding>
+            <crown-edpws-binding property="value" name="CSK_Application_FlowConfig/OnNewStatusCSKStyle" update-on-resume
+                converter="changeStyle">
+            </crown-edpws-binding>
+        </stacked-view>
+    </layout-column>
+</layout-row>

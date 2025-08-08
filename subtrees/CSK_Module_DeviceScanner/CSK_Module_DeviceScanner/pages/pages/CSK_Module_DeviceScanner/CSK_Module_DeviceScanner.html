@@ -7,13 +7,12 @@
         <layout-row id="RowLayout13">
             <layout-column id="ColumnLayout14" style="align-items: stretch">
                 <layout-row id="RowLayout14" style="align-items: baseline">
-                    <davinci-value-display id="VD_Title" class="myCustomLabel_CSK_Module_DeviceScanner"
-                        value="Device Scanner">
-                    </davinci-value-display>
+                    <h1 id="Heading_Title" class="myCustomLabel_CSK_Module_DeviceScanner">
+                        Device Scanner
+                    </h1>
                     <davinci-value-display id="VD_Version">
-                        <crown-edpws-binding property="value" name="CSK_DeviceScanner/OnNewStatusModuleVersion"
-                            update-on-resume>
-                        </crown-edpws-binding>
+                        <crown-on property="value" crown-event="CSK_DeviceScanner/OnNewStatusModuleVersion">
+                        </crown-on>
                     </davinci-value-display>
                 </layout-row>
             </layout-column>
@@ -53,7 +52,7 @@
                                     <stacked-pane id="SP_Error" value="error">
                                         <davinci-callout id="Callout8" type="error">
                                             <span>
-												New config NOT accepted (maybe just temporarly active)! Trigger rescan to update the list.
+												New config NOT accepted (maybe just temporarly active)! Check if the device needs to be stopped first. Trigger rescan to update the list.
 											</span>
                                         </davinci-callout>
                                     </stacked-pane>
@@ -115,7 +114,8 @@
                                             <layout-column id="ColumnLayout12" style="align-items: center">
                                                 <davinci-button id="B_Scan"
                                                     class="myCustomButton_CSK_Module_DeviceScanner" type="outline"
-                                                    icon-position="append" title="Scan for Device" icon="action/search">
+                                                    title="Scan for Device">
+                                                    <davinci-icon icon="action/search"></davinci-icon>
                                                     <span></span>
                                                     <crown-binding event="submit"
                                                         name="CSK_DeviceScanner/scanForDevices" auto-commit>
@@ -209,8 +209,8 @@
                                             <layout-column id="ColumnLayout13" style="align-items: center">
                                                 <davinci-button id="B_SendConfig"
                                                     class="myCustomButton_CSK_Module_DeviceScanner" type="outline"
-                                                    icon-position="append" title="Send new config to device"
-                                                    icon="navigation/check">
+                                                    title="Send new config to device">
+                                                    <davinci-icon icon="navigation/check"></davinci-icon>
                                                     <span></span>
                                                     <crown-binding event="submit" name="CSK_DeviceScanner/sendNewConfig"
                                                         auto-commit>

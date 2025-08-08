@@ -14,6 +14,7 @@ For further information regarding the internal used functions / events check out
 Tested on:  
 |Device|Firmware|Module version|
 |--|--|--|
+|SICK AppEngine|V1.7.0|V2.1.1|
 |SICK AppEngine|V1.7.0|V2.1.0|
 |SIM1012|V2.4.2|V2.1.0|
 |SICK AppEngine|V1.3.2|<V2.1.0|

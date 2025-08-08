@@ -5,12 +5,12 @@
         <layout-row id="RowLayout15">
             <layout-column id="ColumnLayout17" style="align-items: stretch">
                 <layout-row id="RowLayout13" style="align-items: baseline">
-                    <davinci-value-display id="V_Title" class="myCustomLabel_CSK_Module_Logger" value="Logger">
-                    </davinci-value-display>
+                    <h1 id="Heading_Title" class="myCustomLabel_CSK_Module_Logger">
+                        Logger
+                    </h1>
                     <davinci-value-display id="VD_Version">
-                        <crown-edpws-binding property="value" name="CSK_Logger/OnNewStatusModuleVersion"
-                            update-on-resume>
-                        </crown-edpws-binding>
+                        <crown-on property="value" crown-event="CSK_Logger/OnNewStatusModuleVersion">
+                        </crown-on>
                     </davinci-value-display>
                 </layout-row>
             </layout-column>
@@ -62,9 +62,10 @@
                                                                     style="justify-content: center; align-items: center">
                                                                     <davinci-button id="B_LoadConfig"
                                                                         class="myCustomButton_CSK_Module_Logger"
-                                                                        type="outline" icon-position="append"
-                                                                        title="Load configured parameters from CSK_PersistentData module."
-                                                                        icon="action/history">
+                                                                        type="outline"
+                                                                        title="Load configured parameters from CSK_PersistentData module.">
+                                                                        <davinci-icon icon="action/history">
+                                                                        </davinci-icon>
                                                                         <span></span>
                                                                         <crown-binding event="submit"
                                                                             name="CSK_Logger/loadParameters"
@@ -78,9 +79,10 @@
                                                                     </davinci-button>
                                                                     <davinci-button id="B_SaveConfig"
                                                                         class="myCustomButton_CSK_Module_Logger"
-                                                                        type="outline" icon-position="append"
-                                                                        title="Save current configured parameters of this module within CSK_PersistentData module."
-                                                                        icon="content/save">
+                                                                        type="outline"
+                                                                        title="Save current configured parameters of this module within CSK_PersistentData module.">
+                                                                        <davinci-icon icon="content/save">
+                                                                        </davinci-icon>
                                                                         <span></span>
                                                                         <crown-binding event="submit"
                                                                             name="CSK_Logger/sendParameters"
@@ -388,9 +390,8 @@
                                     <layout-column id="ColumnLayout21" style="align-items: stretch">
                                         <davinci-text-area id="TA_LogEntries" class="myMinHeight500px_CSK_Module_Logger"
                                             label="Log messages">
-                                            <crown-edpws-binding property="value" name="CSK_Logger/OnNewCompleteLogfile"
-                                                update-on-resume>
-                                            </crown-edpws-binding>
+                                            <crown-on property="value" crown-event="CSK_Logger/OnNewCompleteLogfile">
+                                            </crown-on>
                                         </davinci-text-area>
                                         <stacked-view id="SV_SinkActive">
                                             <stacked-pane id="SP_SinkActive" value="true">
@@ -410,8 +411,9 @@
                                                     </appspace-file-download-button>
                                                     <davinci-button id="Button_ReloadLog"
                                                         class="myCustomButton_CSK_Module_Logger" type="outline"
-                                                        icon-position="append" icon="navigation/refresh"
                                                         title="Reload Logfile">
+                                                        <davinci-icon icon="navigation/refresh">
+                                                        </davinci-icon>
                                                         <span></span>
                                                         <crown-binding event="submit" name="CSK_Logger/reloadLogsInUI"
                                                             auto-commit>
