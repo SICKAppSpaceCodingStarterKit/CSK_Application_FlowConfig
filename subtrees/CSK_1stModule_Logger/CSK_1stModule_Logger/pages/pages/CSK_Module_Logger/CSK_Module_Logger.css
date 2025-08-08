@@ -1,0 +1,91 @@
+.myCustomSpacerVert10_CSK_Module_Logger {
+  min-height: 10px;
+}
+
+.myCustomSpacerVert20_CSK_Module_Logger {
+  min-height: 20px;
+}
+
+.myMargin20px0_CSK_Module_Logger {
+  margin: 20px 0;
+}
+
+.myMinHeightpx_CSK_Module_Logger {
+  min-height: 20px;
+}
+
+.myMinHeight500px_CSK_Module_Logger {
+  min-height: 500px;
+}
+
+.myCustomPersistentDataMargin_CSK_Module_Logger {
+  margin-top: -53px;
+  margin-left: 130px;
+}
+
+.myCustomPersistentDataMarginBack_CSK_Module_Logger {
+  margin-left: -127px;
+}
+
+.myCustomFrameNoColor_CSK_Module_Logger {
+  margin: 6px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 0px;
+  border-color: 007CC1;
+  background-color: white;
+}
+
+.myCustomLabel_CSK_Module_Logger {
+  font-size:30px;
+  color: grey;
+  margin-top: 10px;
+}
+
+.myCustomFrameLabel_CSK_Module_Logger {
+  background: white;
+  position:relative;
+  top: calc(-1.2rem);
+  left: calc(1rem);
+  font-size: medium;
+}
+
+.myCustomMarginFirstRow_CSK_Module_Logger {
+  margin-top: -49px;
+}
+
+.myCustomBorderBottom_CSK_Module_Logger {
+  border-bottom: 1px solid lightgray;
+  margin-inline: calc(1rem);
+}
+
+.myCustomSpacerVert10WithBottomBorder_CSK_Module_Logger {
+  min-height: 10px;
+  border-bottom: 1px solid lightgray;
+  margin-inline: calc(1rem);
+}
+
+.myCustomBorderLeft_CSK_Module_Logger {
+  border-left: 1px solid lightgray;
+}
+
+.myCustomFrame_CSK_Module_Logger {
+  margin: 6px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #007CC1;
+  background-color: white;
+}
+
+.myCustomMarginTop7PX_CSK_Module_Logger {
+  margin-top: 7px;
+}
+
+.myCustomBackground_CSK_Module_Logger {
+}
+
+.myCustomButton_CSK_Module_Logger {
+  border-radius: 30px;
+  padding: 11px;
+}
