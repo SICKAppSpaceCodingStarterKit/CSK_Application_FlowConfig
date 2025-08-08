@@ -1,0 +1,22 @@
+<layout-row id="RowLayout1" class="myCustomBackground_CSK_Application_Medtronic_DataLink" style="align-items: stretch">
+    <layout-column id="ColumnLayout1" class="myCustomFrameNoColor_CSK_Application_Medtronic_DataLink"
+        style="align-items: stretch">
+		<layout-row id="RowLayout7"
+			style="align-items: stretch; flex-shrink: 0">
+			<layout-column id="iFrame" style="align-items: stretch">
+				<iframe
+					src="/?msdd=CSK_Module_FlowConfig#!page=CSK_Module_FlowConfig&fullscreen=true"
+					title="BlocksEditor" style="width: 99%; height: 99%; border-width: 0px">
+				</iframe>
+			</layout-column>
+		</layout-row>
+        <stacked-view id="SV_PageCalled">
+            <crown-binding property="value" name="CSK_FlowConfig/pageCalled" path="result/data/empty" auto-update="0"
+                update-on-resume>
+            </crown-binding>
+            <crown-edpws-binding property="value" name="CSK_FlowConfig/OnNewStatusCSKStyle" update-on-resume
+                converter="changeStyle">
+            </crown-edpws-binding>
+        </stacked-view>
+    </layout-column>
+</layout-row>

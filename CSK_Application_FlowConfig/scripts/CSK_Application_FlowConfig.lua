@@ -23,6 +23,11 @@
 --**************************************************************************
 --**********************Start Global Scope *********************************
 --**************************************************************************
+
+-- If app property "LuaLoadAllEngineAPI" is FALSE, use this to load and check for required APIs
+-- This can improve performance of garbage collection
+_G.availableAPIs = require('Application/FlowConfig/helper/checkAPIs') -- can be used to adjust function scope of the module related on available APIs of the device
+
 local welcomeAppAvailable = SICK_WelcomeApp ~= nil or false -- Check if WelcomeApp runs on the device
 
 -- ************************ UI Events Start ********************************
@@ -35,7 +40,7 @@ local styleForUI = 'None' -- Optional parameter to set UI style
 local moduleVersion = Engine.getCurrentAppVersion() -- Version of module
 
 local tmr = Timer.create()
-tmr:setExpirationTime(100)
+tmr:setExpirationTime(300)
 tmr:setPeriodic(false)
 
 --**************************************************************************

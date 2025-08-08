@@ -19,39 +19,27 @@ UI sources are not included in this repository.
 Tested on:
 |Device|Firmware|Module version|
 |--|--|--|
+|SIM300|V1.1.0|V1.1.0|
 |SICK AppEngine|V1.7.0|V1.0.0|
 |SIM1012|V2.4.2|V1.0.0|
 
 Following CSK modules are used for this application via Git subtrees and should NOT be further developed within this repository (see [contribution guideline](https://github.com/SICKAppSpaceCodingStarterKit/.github/blob/main/Contribution_Guideline.md) of this GitHub organization):  
 
-  * CSK_1stModule_Logger (release v4.2.0)
-  * CSK_Module_Commands (release v1.0.0)
-  * CSK_Module_DateTime (release v3.2.0)
-  * CSK_Module_DeviceNetworkConfig (release v2.2.1)
-  * CSK_Module_DeviceScanner (release v2.1.0)
-  * CSK_Module_DigitalIOManager(release v4.0.0)
-  * CSK_Module_FileManager (release v1.1.0)
-  * CSK_Module_FlowConfig (release v1.0.0)
-  * CSK_Module_FTPClient (release v4.0.0)
-  * CSK_Module_ImagePlayer (release v3.0.0)
-  * CSK_Module_IODDInterpreter (release v2.0.0)
+  * CSK_1stModule_Logger (release v4.2.1)
+  * CSK_FlowConfig_FeatureBlocks (release v1.1.1)
+  * CSK_Module_Commands (release v1.0.1)
+  * CSK_Module_DateTime (release v3.3.0)
+  * CSK_Module_DeviceNetworkConfig (release v2.2.2)
+  * CSK_Module_DeviceScanner (release v2.1.1)
+  * CSK_Module_FileManager (release v1.1.1)
+  * CSK_Module_FlowConfig (release v1.3.1)
   * CSK_Module_LicenseManager (release v1.0.0)
-  * CSK_Module_MQTTClient (release v2.0.0)
-  * CSK_Module_MultiColorSelection (release v3.0.0)
-  * CSK_Module_MultiDataLogger (release v2.0.0)
-  * CSK_Module_MultiDeepLearning (release v5.0.0)
-  * CSK_Module_MultiHTTPClient (release v2.0.0)
-  * CSK_Module_MultiImageEdgeMatcher (release v2.0.0)
-  * CSK_Module_MultiImageFilter (release v2.0.0)
-  * CSK_Module_MultiIOLinkSMI (release v2.0.0)
-  * CSK_Module_MultiRemoteCamera (release v6.0.0)
-  * CSK_Module_MultiTCPIPClient (release v2.0.0)
-  * CSK_Module_MultiTCPIPServer (release v2.0.0)
-  * CSK_Module_PersistentData (release v4.1.0)
-  * CSK_Module_PowerManager  (release v2.6.0)
-  * CSK_Module_RecipeManager  (release v1.0.0)
-  * CSK_Module_ResultManager (release v2.0.0)
-  * CSK_Module_SensorAppOverview (release v1.0.0)
+  * CSK_Module_MultiDataLogger (release v2.1.0)
+  * CSK_Module_PersistentData (release v4.2.1)
+  * CSK_Module_PowerManager  (release v2.6.1)
+  * CSK_Module_RecipeManager  (release v1.0.2)
+  * CSK_Module_ResultManager (release v2.1.1)
+  * CSK_Module_SensorAppOverview (release v1.0.1)
 
 This application is part of the SICK AppSpace Coding Starter Kit developing approach.  
 It is programmed in an object oriented way. Some of the modules use kind of "classes" in Lua to make it possible to reuse code / classes in other projects.  

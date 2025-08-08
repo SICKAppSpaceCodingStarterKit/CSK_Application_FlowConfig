@@ -1,0 +1,58 @@
+{
+  "version": "1.0", 
+  "pages": [
+    {
+      "category": "CSK Application",
+      "pages": [
+        {
+          "path": "CSK_Application_FlowConfig/CSK_Application_FlowConfig.html",
+          "name": "Welcome to CSK"
+        },
+
+        {
+          "path": "CSK_Application_FlowConfig/CSK_Application_FlowConfigEditor_Frame.html",
+          "name": "Flow Config"
+        },
+
+        {
+          "path": "CSK_Application_FlowConfig/CSK_Module_SensorAppOverview_Frame.html",
+          "name": "Features"
+        }
+      ]
+    },
+    {
+      "category": "Main Features",
+      "pages": [
+        {
+          "path": "CSK_Application_FlowConfig/CSK_Module_Logger_Frame.html",
+          "name": "Logs"
+        },
+
+        {
+          "path": "CSK_Application_FlowConfig/CSK_Module_DeviceNetworkConfig_Frame.html",
+          "name": "Network Config"
+        },
+
+        {
+          "path": "CSK_Application_FlowConfig/CSK_Module_PowerManager_Frame.html",
+          "name": "Power"
+        },
+
+        {
+          "path": "CSK_Application_FlowConfig/CSK_Module_DeviceScanner_Frame.html",
+          "name": "Device Scanner"
+        },
+
+        {
+          "path": "CSK_Application_FlowConfig/CSK_Module_FileManager_Frame.html",
+          "name": "File Manager"
+        },
+
+        {
+          "path": "CSK_Application_FlowConfig/CSK_Module_PersistentData_Frame.html",
+          "name": "Persistent Data"
+        }
+      ]
+    }
+  ]
+}

@@ -26,12 +26,12 @@ Concerning required CSK modules to run this application, please refer to the REA
             </serves>
         </crown>
         <meta key="author">SICK AG</meta>
-        <meta key="version">1.0.0</meta>
+        <meta key="version">2.0.0</meta>
         <meta key="priority">low</meta>
         <meta key="copy-protected">false</meta>
         <meta key="read-protected">false</meta>
         <meta key="crown2-flow-engine">false</meta>
-        <meta key="LuaLoadAllEngineAPI">true</meta>
+        <meta key="LuaLoadAllEngineAPI">false</meta>
         <entry default="CSK_Application_FlowConfig.lua" path="scripts"/>
     </application>
 </manifest>
