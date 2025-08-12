@@ -13,13 +13,10 @@ For further information check out the [documentation](https://raw.githack.com/SI
 
 Developed for a screen resolution of 1920x1080px, 100% scaling.
 
-**INFO for developers**  
-UI sources are not included in this repository.  
-
 Tested on:
 |Device|Firmware|Module version|
 |--|--|--|
-|SIM300|V1.1.0|V1.1.0|
+|SIM300|V1.1.0|V2.0.0|
 |SICK AppEngine|V1.7.0|V1.0.0|
 |SIM1012|V2.4.2|V1.0.0|
 
