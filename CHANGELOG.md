@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## Release 2.1.0
+
+### New features
+- Added CSK_Module_Dashboard version 1.0.0
+
+### Improvements
+- Update of CSK_Module_FlowConfig to version 1.4.0
+- Update of CSK_Module_PersistentData to version 4.2.2
+
 ## Release 2.0.0
 - Major change: Reduced function scope of this application to base features
 
