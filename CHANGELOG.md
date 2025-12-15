@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## Release 2.2.0
+
+### Improvements
+- Update of CSK_Module_FlowConfig to version 2.0.0
+
 ## Release 2.1.0
 
 ### New features
