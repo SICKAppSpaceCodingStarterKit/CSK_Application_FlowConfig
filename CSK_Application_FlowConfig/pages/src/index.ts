@@ -4,7 +4,7 @@ document.addEventListener('sopasjs-ready', () => {
   page_CSK_Welcome.classList.remove('fa-file');
   page_CSK_Welcome.classList.add('fa-home');
 
-    const page_FlowConfig_Frame = document.querySelector('div.sopasjs-ui-navbar-wrapper > div > ul > li:nth-child(4) > a > i');
+  const page_FlowConfig_Frame = document.querySelector('div.sopasjs-ui-navbar-wrapper > div > ul > li:nth-child(4) > a > i');
   page_FlowConfig_Frame.classList.remove('fa-file');
   page_FlowConfig_Frame.classList.add('fa-share-alt');
 
